@@ -1,0 +1,54 @@
+<section class="hp-slider">
+<div class="home-slider">
+	
+   <?php 
+	$titleArray= array();
+if( have_rows('home-slider') ): ?>
+          <?php while( have_rows('home-slider') ): the_row(); 
+		  $titleArray[]= get_sub_field('hero-title');
+		  
+		  endwhile;endif;
+		
+		  ?>
+	
+    <?php 
+
+	if( have_rows('home-slider') ): ?>
+          <?php while( have_rows('home-slider') ): the_row(); ?>
+          <?php
+                  $imageArray = get_sub_field('image');
+                  $imageURL = $imageArray['url'];
+	
+	 if($cnt ==count( $titleArray)){
+					$cnt=0;
+				  }
+	
+	?>
+
+         
+ <div class="slide-item hero-slider" style="background-image: url(<?php echo $imageURL; ?>)" data-title="<?php the_sub_field('hero-title'); ?>">
+		   <div class="slider-content">
+			   <div class="content-wrapper">
+          <h2><?php the_sub_field('subtitle');?></h2>
+		<h1 class="herohead"> <a href="<?php the_sub_field('hero-url');?>"> <?php the_sub_field('hero-title'); ?>
+			<?php echo $titleArray[$cnt++] ?>
+			</a></h1> 
+		   <div class="hero-content"><?php the_sub_field('hero-content');?> </div>
+			   </div>
+			   
+       </div>
+		   </div>
+	
+        <?php  $i++; endwhile; ?>
+
+ <?php endif; ?>
+	
+	
+  </div> <!-- .index-slider -->
+<div class="slider-nav">
+	<div class="title-cont"></div><!-- this is where I need the next slide's title to show -->
+    <button class="prev slick-arrow"> <i class="icon-arrow-left"></i> </button>
+    <button class="next slick-arrow"> <i class="icon-arrow-right"></i> </button>
+</div>
+
+</section>
